@@ -1,1 +1,15 @@
-# Define your own admin routes here
+bitexpert_sylius_forcelogin_admin_whitelist_entry_index:
+  resource: |
+    alias: bitexpert_sylius_forcelogin.whitelist_entry
+    section: admin
+    templates: "@SyliusAdmin\\Crud"
+    redirect: update
+    grid: bitexpert_sylius_forcelogin_whitelist_entity
+    vars:
+        all:
+            subheader: bitexpert_sylius_forcelogin.ui.manage_whitelist
+            templates:
+                form: "@BitExpertSyliusForceCustomerLoginPlugin/Admin/Whitelist/_form.html.twig"
+        index:
+            icon: 'check circle outline'
+  type: sylius.resource

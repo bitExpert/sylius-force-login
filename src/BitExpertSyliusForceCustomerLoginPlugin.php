@@ -14,9 +14,9 @@ namespace BitExpert\SyliusForceCustomerLoginPlugin;
 
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 
-final class BitExpertSyliusForceCustomerLoginPlugin extends Bundle
+final class BitExpertSyliusForceCustomerLoginPlugin extends AbstractResourceBundle
 {
     use SyliusPluginTrait;
 

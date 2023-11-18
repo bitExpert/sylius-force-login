@@ -1,0 +1,2 @@
+imports:
+  - { resource: "./grids/bitexpert_sylius_forcelogin_whitelist_entity.yml" }

@@ -1,0 +1,35 @@
+sylius_grid:
+  grids:
+    bitexpert_sylius_forcelogin_whitelist_entity:
+      driver:
+        name: doctrine/orm
+        options:
+          class: "BitExpert\\SyliusForceCustomerLoginPlugin\\Model\\WhitelistEntry"
+      filters:
+        urlRule:
+          type: string
+          label: bitexpert_sylius_forcelogin.ui.urlRule
+      fields:
+        label:
+          type: string
+          label: bitexpert_sylius_forcelogin.ui.label
+        urlRule:
+          type: string
+          label: bitexpert_sylius_forcelogin.ui.urlRule
+        strategy:
+          type: string
+          label: bitexpert_sylius_forcelogin.ui.strategy
+        channels:
+          type: twig
+          label: bitexpert_sylius_forcelogin.ui.channels
+          options:
+            template: "@BitExpertSyliusForceCustomerLoginPlugin/Admin/Grid/Field/channels.html.twig"
+      actions:
+        main:
+          create:
+            type: create
+        item:
+          update:
+            type: update
+          delete:
+            type: delete

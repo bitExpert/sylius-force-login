@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\DependencyInjection;
 
+use BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM\WhitelistEntryRepository;
+use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
+use BitExpert\SyliusForceCustomerLoginPlugin\Form\Type\WhitelistEntryType;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
@@ -43,25 +46,25 @@ final class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
-                    /*->children()
-                        ->arrayNode('terms')
+                    ->children()
+                        ->arrayNode('whitelist_entry')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode('options')->end()
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue(Terms::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('model')->defaultValue(WhitelistEntry::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('repository')->defaultValue(TermsRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(WhitelistEntryRepository::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
-                                        ->scalarNode('form')->defaultValue(TermsType::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(WhitelistEntryType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
 
                             ->end()
                         ->end()
-                    ->end()*/
+                    ->end()
                 ->end()
             ->end()
         ;
