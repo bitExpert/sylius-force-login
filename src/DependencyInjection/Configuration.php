@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace BitExpert\SyliusForceCustomerLoginPlugin\DependencyInjection;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM\WhitelistEntryRepository;
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
 use BitExpert\SyliusForceCustomerLoginPlugin\Form\Type\WhitelistEntryType;
+use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;

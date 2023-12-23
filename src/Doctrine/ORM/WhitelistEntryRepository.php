@@ -19,10 +19,11 @@ class WhitelistEntryRepository extends EntityRepository implements WhitelistEntr
 {
     public function findByChannel(ChannelInterface $channel): array
     {
-        $qb = $this->createQueryBuilder("p")
+        $qb = $this->createQueryBuilder('p')
             ->where(':channel MEMBER OF p.channels')
-            ->setParameters(array('channel' => $channel))
+            ->setParameters(['channel' => $channel])
         ;
+
         return $qb->getQuery()->getResult();
     }
 }

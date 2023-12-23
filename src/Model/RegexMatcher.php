@@ -21,15 +21,15 @@ class RegexMatcher implements StrategyInterface
 
     public function isMatch(string $path, WhitelistEntry $whitelistEntry): bool
     {
-        return (
+        return
             preg_match(
                 sprintf(
                     '#^.*%s/?.*$#i',
-                    $this->quoteRule($whitelistEntry->getUrlRule())
+                    $this->quoteRule($whitelistEntry->getUrlRule()),
                 ),
-                $path
+                $path,
             ) === 1
-        );
+        ;
     }
 
     /**

@@ -26,13 +26,13 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            RequestEvent::class => 'onKernelRequest'
+            RequestEvent::class => 'onKernelRequest',
         ];
     }
 
     public function onKernelRequest(RequestEvent $event): void
     {
-        if(!$event->isMainRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
@@ -52,7 +52,7 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
         }
 
         // for any other url query the security framework
-        if(!$this->security->isGranted('pathInfo', $request)) {
+        if (!$this->security->isGranted('pathInfo', $request)) {
             throw new AccessDeniedException();
         }
     }

@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Model;
 
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Channel\Model\ChannelInterface;
@@ -23,8 +22,11 @@ class WhitelistEntry implements WhitelistEntryInterface
 
     /** @var Collection|ChannelInterface[] */
     protected $channels;
+
     private string $label;
+
     private string $urlRule;
+
     private string $strategy;
 
     public function __construct()

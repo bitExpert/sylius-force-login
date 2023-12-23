@@ -24,7 +24,7 @@ class RequestWhitelistVoter implements VoterInterface
     public function __construct(
         private WhitelistEntryRepositoryInterface $repository,
         private ChannelContextInterface $channelContext,
-        private string $locale
+        private string $locale,
     ) {
     }
 
@@ -36,7 +36,7 @@ class RequestWhitelistVoter implements VoterInterface
 
         $pathInfo = $this->removeLocaleFromPathInfo($subject);
         $whitelistEntries = $this->repository->findByChannel($this->channelContext->getChannel());
-        foreach($whitelistEntries as $whitelistEntry) {
+        foreach ($whitelistEntries as $whitelistEntry) {
             /** @var WhitelistEntry $whitelistEntry */
             $strategy = $whitelistEntry->getStrategy();
             if ($strategy->isMatch($pathInfo, $whitelistEntry)) {
@@ -51,6 +51,7 @@ class RequestWhitelistVoter implements VoterInterface
     {
         $count = 1;
         $pathInfo = $subject->getPathInfo();
+
         return str_replace('/' . $this->locale . '/', '/', $pathInfo, $count);
     }
 }

@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace BitExpert\SyliusForceCustomerLoginPlugin;
 
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
-use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 
 final class BitExpertSyliusForceCustomerLoginPlugin extends AbstractResourceBundle
 {
