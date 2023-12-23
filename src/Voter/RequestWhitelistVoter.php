@@ -14,14 +14,18 @@ namespace BitExpert\SyliusForceCustomerLoginPlugin\Voter;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM\WhitelistEntryRepositoryInterface;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 class RequestWhitelistVoter implements VoterInterface
 {
-    public function __construct(private WhitelistEntryRepositoryInterface $repository, private string $locale)
-    {
+    public function __construct(
+        private WhitelistEntryRepositoryInterface $repository,
+        private ChannelContextInterface $channelContext,
+        private string $locale
+    ) {
     }
 
     public function vote(TokenInterface $token, mixed $subject, array $attributes)
@@ -34,7 +38,7 @@ class RequestWhitelistVoter implements VoterInterface
         $pathInfo = $subject->getPathInfo();
         $pathInfoWithOutLocale = str_replace('/'.$this->locale.'/', '/', $pathInfo, $count);
 
-        $whitelistEntries = $this->repository->findAll();
+        $whitelistEntries = $this->repository->findByChannel($this->channelContext->getChannel());
         foreach($whitelistEntries as $whitelistEntry) {
             /** @var WhitelistEntry $whitelistEntry */
             if (str_contains($pathInfoWithOutLocale, $whitelistEntry->getUrlRule())) {

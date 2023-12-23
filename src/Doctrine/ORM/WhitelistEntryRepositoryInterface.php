@@ -12,8 +12,10 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM;
 
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface WhitelistEntryRepositoryInterface extends RepositoryInterface
 {
+    public function findByChannel(ChannelInterface $channel): array;
 }
