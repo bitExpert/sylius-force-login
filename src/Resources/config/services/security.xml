@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="BitExpert\SyliusForceCustomerLoginPlugin\Events\ForceLoginRequestEvent">
+            <argument type="service" id="Symfony\Bundle\SecurityBundle\Security" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="BitExpert\SyliusForceCustomerLoginPlugin\Voter\RequestWhitelistVoter">
+            <argument type="service" id="BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM\WhitelistEntryRepository" />
+            <argument>%locale%</argument>
+            <tag name="security.voter" />
+        </service>
+    </services>
+</container>
