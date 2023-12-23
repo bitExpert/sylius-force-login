@@ -18,4 +18,25 @@ class RegexMatcher implements StrategyInterface
     {
         return 'regex';
     }
+
+    public function isMatch(string $path, WhitelistEntry $whitelistEntry): bool
+    {
+        return (
+            preg_match(
+                sprintf(
+                    '#^.*%s/?.*$#i',
+                    $this->quoteRule($whitelistEntry->getUrlRule())
+                ),
+                $path
+            ) === 1
+        );
+    }
+
+    /**
+     * Quote delimiter in whitelist entry rule
+     */
+    private function quoteRule(string $rule, string $delimiter = '#'): string
+    {
+        return str_replace($delimiter, \sprintf('\%s', $delimiter), $rule);
+    }
 }

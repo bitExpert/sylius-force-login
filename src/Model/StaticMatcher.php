@@ -18,4 +18,9 @@ class StaticMatcher implements StrategyInterface
     {
         return 'static';
     }
+
+    public function isMatch(string $path, WhitelistEntry $whitelistEntry): bool
+    {
+        return str_starts_with($path, $whitelistEntry->getUrlRule());
+    }
 }

@@ -15,4 +15,6 @@ namespace BitExpert\SyliusForceCustomerLoginPlugin\Model;
 interface StrategyInterface
 {
     public function getType(): string;
+
+    public function isMatch(string $path, WhitelistEntry $whitelistEntry): bool;
 }
