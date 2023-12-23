@@ -9,6 +9,11 @@ sylius_grid:
         urlRule:
           type: string
           label: bitexpert_sylius_forcelogin.ui.urlRule
+        channel:
+          type: entity
+          label: bitexpert_sylius_forcelogin.ui.channel
+          form_options:
+            class: "%sylius.model.channel.class%"
       fields:
         label:
           type: string

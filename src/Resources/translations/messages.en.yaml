@@ -4,6 +4,7 @@ bitexpert_sylius_forcelogin:
     manage_whitelist: Manage whitelist configuration
     code: Code
     label: Label
+    channel: Channel
     channels: Channels
     urlRule: URL Rule
     editable: is Editable
