@@ -81,13 +81,24 @@ class WhitelistEntry implements WhitelistEntryInterface
         $this->urlRule = $urlRule;
     }
 
-    public function getStrategy(): string
+    public function getStrategy(): StrategyInterface
     {
-        return $this->strategy;
+        $staticMatcher = new StaticMatcher();
+        $regexMatcher = new RegexMatcher();
+
+        if ($this->strategy === $staticMatcher->getType()) {
+            return $staticMatcher;
+        }
+
+        if ($this->strategy === $regexMatcher->getType()) {
+            return $regexMatcher;
+        }
+
+        throw new \RuntimeException('Unsupported strategy!');
     }
 
-    public function setStrategy(string $strategy): void
+    public function setStrategy(StrategyInterface $strategy): void
     {
-        $this->strategy = $strategy;
+        $this->strategy = $strategy->getType();
     }
 }

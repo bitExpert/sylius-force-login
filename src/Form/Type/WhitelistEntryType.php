@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Form\Type;
 
+use BitExpert\SyliusForceCustomerLoginPlugin\Model\RegexMatcher;
+use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
+use BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\GridBundle\Form\Type\Filter\SelectFilterType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
@@ -36,9 +39,13 @@ class WhitelistEntryType extends AbstractResourceType
             ])
             ->add('strategy', SelectFilterType::class, [
                 'choices' => [
-                    'static' => 'Static',
-                    'regex' => 'Regex'
+                    new StaticMatcher(),
+                    new RegexMatcher(),
                 ],
+                'choice_value' => 'type',
+                'choice_label' => function (?StrategyInterface $strategy): string {
+                    return $strategy ? ucfirst($strategy->getType()) : '';
+                },
                 'label' => 'bitexpert_sylius_forcelogin.ui.strategy',
             ]);
     }

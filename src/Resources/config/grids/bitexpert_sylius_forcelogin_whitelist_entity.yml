@@ -17,8 +17,10 @@ sylius_grid:
           type: string
           label: bitexpert_sylius_forcelogin.ui.urlRule
         strategy:
-          type: string
+          type: twig
           label: bitexpert_sylius_forcelogin.ui.strategy
+          options:
+            template: "@BitExpertSyliusForceCustomerLoginPlugin/Admin/Grid/Field/strategy.html.twig"
         channels:
           type: twig
           label: bitexpert_sylius_forcelogin.ui.channels

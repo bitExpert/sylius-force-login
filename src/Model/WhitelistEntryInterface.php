@@ -25,7 +25,7 @@ interface WhitelistEntryInterface extends ResourceInterface, ChannelsAwareInterf
 
     public function setUrlRule(string $urlRule): void;
 
-    public function getStrategy(): string;
+    public function getStrategy(): StrategyInterface;
 
-    public function setStrategy(string $strategy): void;
+    public function setStrategy(StrategyInterface $strategy): void;
 }
