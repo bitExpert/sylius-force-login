@@ -1,6 +1,6 @@
 bitexpert_sylius_forcelogin:
   ui:
-    bitexpert_sylius_forcelogin_whitelist_entries: Force Customer Login
+    whitelist_entries: Force Customer Login
     manage_whitelist: Manage whitelist configuration
     code: Code
     label: Label
