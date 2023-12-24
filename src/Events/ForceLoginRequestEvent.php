@@ -40,7 +40,8 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
 
         // whitelist "default" urls that should always work
         $pathInfo = $request->getPathInfo();
-        if (str_starts_with($pathInfo, '/_wdt') ||
+        if ($pathInfo === '/' ||
+            str_starts_with($pathInfo, '/_wdt') ||
             str_starts_with($pathInfo, '/profiler') ||
             str_starts_with($pathInfo, '/admin') ||
             str_contains($pathInfo, '/login') ||
