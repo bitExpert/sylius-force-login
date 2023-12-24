@@ -20,7 +20,7 @@ class WhitelistEntry implements WhitelistEntryInterface
 {
     protected int $id;
 
-    /** @var Collection|ChannelInterface[] */
+    /** @var Collection<int, ChannelInterface>|ChannelInterface[] */
     protected $channels;
 
     private string $label;
@@ -34,7 +34,7 @@ class WhitelistEntry implements WhitelistEntryInterface
         $this->channels = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }

@@ -44,7 +44,7 @@ class WhitelistEntryType extends AbstractResourceType
                 ],
                 'choice_value' => 'type',
                 'choice_label' => function (?StrategyInterface $strategy): string {
-                    return $strategy ? ucfirst($strategy->getType()) : '';
+                    return is_object($strategy) ? ucfirst($strategy->getType()) : '';
                 },
                 'label' => 'bitexpert_sylius_forcelogin.ui.strategy',
             ]);

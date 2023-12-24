@@ -24,6 +24,7 @@ class WhitelistEntryRepository extends EntityRepository implements WhitelistEntr
             ->setParameters(['channel' => $channel])
         ;
 
-        return $qb->getQuery()->getResult();
+        $result = $qb->getQuery()->getResult();
+        return is_array($result) ? $result : [];
     }
 }
