@@ -2,11 +2,14 @@
     "name": "bitexpert/sylius-force-login-plugin",
     "description": "Sylius Force Login Plugin",
     "type": "sylius-plugin",
-    "keywords": [
-        "sylius",
-        "sylius-plugin"
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stephan Hochdörfer",
+            "email": "S.Hochdoerfer@bitExpert.de",
+            "homepage": "http://www.bitExpert.de"
+        }
     ],
-    "license": "proprietary",
     "require": {
         "php": "^8.0",
         "sylius/sylius": "^1.12",
@@ -89,6 +92,15 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "security-checker security:check": "script"
-        }
+        },
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "vendor/bin/ecs check",
+        "cs-fix": "vendor/bin/ecs check --fix",
+        "analyze": "vendor/bin/phpstan analyze",
+        "test": "vendor/bin/phpunit",
+        "coverage": "vendor/bin/phpunit --coverage-clover clover.xml"
     }
 }
