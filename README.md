@@ -1,122 +1,61 @@
-<p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" />
-    </a>
-</p>
+# Force Login Plugin for Sylius
 
-<h1 align="center">Plugin Skeleton</h1>
+The **Force Login** Plugin for *Sylius* allows you to restrict which pages a visitor is
+able to see. Visitors get redirected to the login page if the page is not marked visitable.
+The **Force Login** Module for *Sylius* is especially useful for merchants serving only a specific
+group of users, e.g. enterprise related business partners and need to ensure that only those users are
+able to browse the website or the product catalog.
 
-<p align="center">Skeleton for starting Sylius plugins.</p>
+## Features:
+* Force your guest visitors to log in first (or register), before allowing them to visit your pages and catalog
+* Administration: Manage the whitelist rules by the GUI in the administration area
+* Whitelisting: Define url rules as pattern to define which pages guest visitors can visit without logging in first
+* Multistore-Support: Define if whitelist rules either apply globally or for specific stores
 
-## Documentation
+## Requirements:
+* PHP 8.0 or higher
+* Sylius 1.12 or higher
 
-For a comprehensive guide on Sylius Plugins development please go to Sylius documentation,
-there you will find the <a href="https://docs.sylius.com/en/latest/plugin-development-guide/index.html">Plugin Development Guide</a>, that is full of examples.
+## Installation
 
-## Quickstart Installation
+# User Guide
 
-### Traditional
+## How to use
+The usage of the **Force Login** Module for *Sylius* is applied implicitly by redirecting visitors
+if the called URI does not match any configured whitelisted url rules.
 
-1. Run `composer create-project sylius/plugin-skeleton ProjectName`.
+### Whitelisting
 
-2. From the plugin skeleton root directory, run the following commands:
+Whitelisting is based upon the usage of rules. The strategy selection defines how the rules are interpreted, [details are listed below](#strategies).
+The following example shows, how to add a whitelist entry for the homepage (startpage).
 
-    ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn build)
-    $ (cd tests/Application && APP_ENV=test bin/console assets:install public)
-    
-    $ (cd tests/Application && APP_ENV=test bin/console doctrine:database:create)
-    $ (cd tests/Application && APP_ENV=test bin/console doctrine:schema:create)
-    ```
+In Sylius Admin navigate to Configuration > Force Login and use the *Create* button to create a new entry.
 
-To be able to set up a plugin's database, remember to configure you database credentials in `tests/Application/.env` and `tests/Application/.env.test`.
+- Enter **Homepage** into the text field below the **Label** label.
+- Enter **/** into the text field beside from the **Url Rule** label.
+- Select the channel from the channel list below the **Channel** label which the rule should be active for.
 
-### Docker
+Use the **Create** button to save the entry. After being redirected to the **Overview Grid**, the new
+entry should appear to the list.
 
-1. Execute `docker compose up -d`
+## How to configure
 
-2. Initialize plugin `docker compose exec app make init`
+### Strategies
 
-3. See your browser `open localhost`
+#### Static
+Rule is used as a literal value and will be added onto the base url for matching. This is default behaviour.
 
-## Usage
+#### RegEx-All
+Rule is based on [regular expression](https://en.wikipedia.org/wiki/Regular_expression), and will be used for looking up matching anywhere in the current Url.
 
-### Running plugin tests
+## Tests
 
-  - PHPUnit
+You can run the unit tests with the following command (requires dependency installation):
 
-    ```bash
-    vendor/bin/phpunit
-    ```
+    ./vendor/bin/phpunit
 
-  - PHPSpec
+## Contribution
+Feel free to contribute to this module by reporting issues or create some pull requests for improvements.
 
-    ```bash
-    vendor/bin/phpspec run
-    ```
-
-  - Behat (non-JS scenarios)
-
-    ```bash
-    vendor/bin/behat --strict --tags="~@javascript"
-    ```
-
-  - Behat (JS scenarios)
- 
-    1. [Install Symfony CLI command](https://symfony.com/download).
- 
-    2. Start Headless Chrome:
-    
-      ```bash
-      google-chrome-stable --enable-automation --disable-background-networking --no-default-browser-check --no-first-run --disable-popup-blocking --disable-default-apps --allow-insecure-localhost --disable-translate --disable-extensions --no-sandbox --enable-features=Metal --headless --remote-debugging-port=9222 --window-size=2880,1800 --proxy-server='direct://' --proxy-bypass-list='*' http://127.0.0.1
-      ```
-    
-    3. Install SSL certificates (only once needed) and run test application's webserver on `127.0.0.1:8080`:
-    
-      ```bash
-      symfony server:ca:install
-      APP_ENV=test symfony server:start --port=8080 --dir=tests/Application/public --daemon
-      ```
-    
-    4. Run Behat:
-    
-      ```bash
-      vendor/bin/behat --strict --tags="@javascript"
-      ```
-    
-  - Static Analysis
-  
-    - Psalm
-    
-      ```bash
-      vendor/bin/psalm
-      ```
-      
-    - PHPStan
-    
-      ```bash
-      vendor/bin/phpstan analyse -c phpstan.neon -l max src/  
-      ```
-
-  - Coding Standard
-  
-    ```bash
-    vendor/bin/ecs check
-    ```
-
-### Opening Sylius with your plugin
-
-- Using `test` environment:
-
-    ```bash
-    (cd tests/Application && APP_ENV=test bin/console sylius:fixtures:load)
-    (cd tests/Application && APP_ENV=test bin/console server:run -d public)
-    ```
-    
-- Using `dev` environment:
-
-    ```bash
-    (cd tests/Application && APP_ENV=dev bin/console sylius:fixtures:load)
-    (cd tests/Application && APP_ENV=dev bin/console server:run -d public)
-    ```
+## License
+The **Force Login** Module for *Sylius* is released under the MIT license.
