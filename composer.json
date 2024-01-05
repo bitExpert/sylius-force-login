@@ -16,6 +16,8 @@
     "require-dev": {
         "behat/behat": "^3.6.1",
         "behat/mink-selenium2-driver": "^1.4",
+        "captainhook/captainhook": "^5.19",
+        "captainhook/plugin-composer": "^5.3",
         "dmore/behat-chrome-extension": "^1.3",
         "dmore/chrome-mink-driver": "^2.7",
         "friends-of-behat/mink": "^1.8",
@@ -51,7 +53,8 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false,
             "phpstan/extension-installer": true,
-            "symfony/flex": true
+            "symfony/flex": true,
+            "captainhook/plugin-composer": true
         }
     },
     "extra": {
