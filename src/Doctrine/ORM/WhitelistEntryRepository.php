@@ -25,6 +25,7 @@ class WhitelistEntryRepository extends EntityRepository implements WhitelistEntr
         ;
 
         $result = $qb->getQuery()->getResult();
+
         return is_array($result) ? $result : [];
     }
 }
