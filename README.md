@@ -18,6 +18,47 @@ able to browse the website or the product catalog.
 
 ## Installation
 
+1. Install the plugin via Composer
+```bash
+composer require bitexpert/sylius-force-login-plugin
+```
+
+2. Enable the plugin
+```php
+<?php
+# config/bundles.php
+return [
+    // ...
+
+    BitExpert\SyliusForceCustomerLoginPlugin\BitExpertSyliusForceCustomerLoginPlugin::class => ['all' => true],
+];
+```
+
+3. Import config
+```yaml
+# config/packages/_sylius.yaml
+imports:
+    # ...
+
+    - { resource: "@BitExpertSyliusForceCustomerLoginPlugin/Resources/config/config.yml" }
+    
+    # ...
+```
+
+4. Import routing
+```yaml
+# config/routes/bitexpert_sylius_force_login.yaml
+bitexpert_sylius_forcelogin:
+  resource: "@BitExpertSyliusForceCustomerLoginPlugin/Resources/config/admin_routing.yml"
+  prefix: '/%sylius_admin.path_name%'
+```
+
+5. Update your database schema
+```bash
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
+```
+
 # User Guide
 
 ## How to use
