@@ -2,6 +2,7 @@ bitexpert_sylius_forcelogin:
   ui:
     whitelist_entries: Force Customer Login
     manage_whitelist: Manage whitelist configuration
+    new_whitelist_entry: New whitelist entry
     code: Code
     label: Label
     channel: Channel
