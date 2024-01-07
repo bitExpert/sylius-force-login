@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Form\Type;
 
+use BitExpert\SyliusForceCustomerLoginPlugin\Model\NegatedRegexMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\RegexMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface;
@@ -41,10 +42,11 @@ class WhitelistEntryType extends AbstractResourceType
                 'choices' => [
                     new StaticMatcher(),
                     new RegexMatcher(),
+                    new NegatedRegexMatcher(),
                 ],
-                'choice_value' => 'type',
+                'choice_value' => 'name',
                 'choice_label' => function (?StrategyInterface $strategy): string {
-                    return is_object($strategy) ? ucfirst($strategy->getType()) : '';
+                    return is_object($strategy) ? $strategy->getName() : '';
                 },
                 'label' => 'bitexpert_sylius_forcelogin.ui.strategy',
             ]);

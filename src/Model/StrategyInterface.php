@@ -16,5 +16,7 @@ interface StrategyInterface
 {
     public function getType(): string;
 
+    public function getName(): string;
+
     public function isMatch(string $path, WhitelistEntry $whitelistEntry): bool;
 }

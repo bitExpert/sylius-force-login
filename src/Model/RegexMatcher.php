@@ -19,6 +19,11 @@ class RegexMatcher implements StrategyInterface
         return 'regex';
     }
 
+    public function getName(): string
+    {
+        return 'Regex';
+    }
+
     public function isMatch(string $path, WhitelistEntry $whitelistEntry): bool
     {
         return

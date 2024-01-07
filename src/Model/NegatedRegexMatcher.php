@@ -12,20 +12,20 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Model;
 
-class StaticMatcher implements StrategyInterface
+class NegatedRegexMatcher extends RegexMatcher
 {
     public function getType(): string
     {
-        return 'static';
+        return 'negated_regex';
     }
 
     public function getName(): string
     {
-        return 'Static';
+        return 'Negated Regex';
     }
 
     public function isMatch(string $path, WhitelistEntry $whitelistEntry): bool
     {
-        return str_starts_with($path, $whitelistEntry->getUrlRule());
+        return !parent::isMatch($path, $whitelistEntry);
     }
 }

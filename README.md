@@ -86,8 +86,11 @@ entry should appear to the list.
 #### Static
 Rule is used as a literal value and will be added onto the base url for matching. This is default behaviour.
 
-#### RegEx-All
-Rule is based on [regular expression](https://en.wikipedia.org/wiki/Regular_expression), and will be used for looking up matching anywhere in the current Url.
+#### RegEx
+Rule is based on [regular expression](https://en.wikipedia.org/wiki/Regular_expression), and will be used for looking up matching anywhere in the current url.
+
+#### Negated RegEx
+Based on the RegEx strategy, but negates the result. Helpful if only a few pages should be restricted.
 
 ## Tests
 

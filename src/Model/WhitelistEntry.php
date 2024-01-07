@@ -87,6 +87,7 @@ class WhitelistEntry implements WhitelistEntryInterface
     {
         $staticMatcher = new StaticMatcher();
         $regexMatcher = new RegexMatcher();
+        $negatedRegexMatcher = new NegatedRegexMatcher();
 
         if ($this->strategy === $staticMatcher->getType()) {
             return $staticMatcher;
@@ -94,6 +95,10 @@ class WhitelistEntry implements WhitelistEntryInterface
 
         if ($this->strategy === $regexMatcher->getType()) {
             return $regexMatcher;
+        }
+
+        if ($this->strategy === $negatedRegexMatcher->getType()) {
+            return $negatedRegexMatcher;
         }
 
         throw new \RuntimeException('Unsupported strategy!');
