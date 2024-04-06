@@ -1,5 +1,7 @@
 # Force Login Plugin for Sylius
 
+![Mastodon Follow](https://img.shields.io/mastodon/follow/109408681246972700?domain=https://rheinneckar.social)
+
 The **Force Login** Plugin for *Sylius* allows you to restrict which pages a visitor is
 able to see. Visitors get redirected to the login page if the page is not marked visitable.
 The **Force Login** Module for *Sylius* is especially useful for merchants serving only a specific
