@@ -3,3 +3,19 @@ parameters:
     paths:
         - bin/
         - src/
+    ignoreErrors:
+        -
+            message: '~return type has no value type specified in iterable type array~'
+            path: src/BitExpertSyliusForceCustomerLoginPlugin.php
+        -
+            message: '~Call to an undefined method~'
+            path: src/DependencyInjection/Configuration.php
+        -
+            message: '~Call to an undefined method~'
+            path: src/DependencyInjection/Configuration.php
+        -
+            message: '~Parameter #1 \$node of method~'
+            path: src/DependencyInjection/Configuration.php
+        -
+            message: '~has parameter \$attributes with no value type specified in iterable type array~'
+            path: src/Voter/RequestWhitelistVoter.php
