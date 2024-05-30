@@ -18,7 +18,7 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 
 class WhitelistEntry implements WhitelistEntryInterface
 {
-    protected int $id;
+    protected ?int $id = null;
 
     /** @var Collection<int, ChannelInterface>|ChannelInterface[] */
     protected $channels;
@@ -34,7 +34,7 @@ class WhitelistEntry implements WhitelistEntryInterface
         $this->channels = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
