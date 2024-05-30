@@ -12,11 +12,15 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM;
 
+use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Model\ChannelInterface;
 
 class WhitelistEntryRepository extends EntityRepository implements WhitelistEntryRepositoryInterface
 {
+    /**
+     * @return array<WhitelistEntryInterface>
+     */
     public function findByChannel(ChannelInterface $channel): array
     {
         $qb = $this->createQueryBuilder('p')
