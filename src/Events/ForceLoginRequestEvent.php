@@ -42,7 +42,7 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
         $pathInfo = $request->getPathInfo();
         if ($pathInfo === '/' ||
             str_starts_with($pathInfo, '/_wdt') ||
-            str_starts_with($pathInfo, '/profiler') ||
+            str_starts_with($pathInfo, '/_profiler') ||
             str_starts_with($pathInfo, '/admin') ||
             str_contains($pathInfo, '/login') ||
             str_contains($pathInfo, '/register') ||
