@@ -1,0 +1,6 @@
+bitexpert_sylius_forcelogin:
+  form:
+    label:
+      not_blank: A label needs to be provided!
+    urlRule:
+      not_blank: A url rule is required for a whitelist entry!
