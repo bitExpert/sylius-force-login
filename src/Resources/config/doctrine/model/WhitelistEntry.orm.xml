@@ -20,10 +20,10 @@
             </join-table>
         </many-to-many>
 
-        <field name="label" type="string" column="label" />
+        <field name="label" type="string" column="label" nullable="false" />
 
-        <field name="urlRule" type="string" column="url_rule" />
+        <field name="urlRule" type="string" column="url_rule" nullable="false" />
 
-        <field name="strategy" type="string" column="strategy" />
+        <field name="strategy" type="string" column="strategy" nullable="false" />
     </mapped-superclass>
 </doctrine-mapping>

@@ -17,8 +17,8 @@ use BitExpert\SyliusForceCustomerLoginPlugin\Model\RegexMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
-use Sylius\Bundle\GridBundle\Form\Type\Filter\SelectFilterType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -34,11 +34,13 @@ class WhitelistEntryType extends AbstractResourceType
             ])
             ->add('label', TextType::class, [
                 'label' => 'bitexpert_sylius_forcelogin.ui.label',
+                'empty_data' => '',
             ])
             ->add('urlRule', TextType::class, [
                 'label' => 'bitexpert_sylius_forcelogin.ui.urlRule',
+                'empty_data' => '',
             ])
-            ->add('strategy', SelectFilterType::class, [
+            ->add('strategy', ChoiceType::class, [
                 'choices' => [
                     new StaticMatcher(),
                     new RegexMatcher(),

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
+    <class name="BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry">
+        <property name="label">
+            <constraint name="NotBlank">
+                <option name="message">bitexpert_sylius_forcelogin.form.label.not_blank</option>
+            </constraint>
+        </property>
+        <property name="urlRule">
+            <constraint name="NotBlank">
+                <option name="message">bitexpert_sylius_forcelogin.form.urlRule.not_blank</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>
