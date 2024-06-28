@@ -16,7 +16,7 @@ use BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\DBAL\Types\Strategy;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class DoctrineTypeRegisterCompilerPass implements CompilerPassInterface
+class RegisterDoctrineTypeCompilerPass implements CompilerPassInterface
 {
     private const CONTAINER_TYPES_PARAMETER = 'doctrine.dbal.connection_factory.types';
 

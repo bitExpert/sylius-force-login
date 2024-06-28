@@ -12,7 +12,8 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin;
 
-use BitExpert\SyliusForceCustomerLoginPlugin\DependencyInjection\Compiler\DoctrineTypeRegisterCompilerPass;
+use BitExpert\SyliusForceCustomerLoginPlugin\DependencyInjection\Compiler\RegisterDoctrineMiddlewareCompilerPass;
+use BitExpert\SyliusForceCustomerLoginPlugin\DependencyInjection\Compiler\RegisterDoctrineTypeCompilerPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -33,6 +34,7 @@ final class BitExpertSyliusForceCustomerLoginPlugin extends AbstractResourceBund
     {
         parent::build($container);
 
-        $container->addCompilerPass(new DoctrineTypeRegisterCompilerPass());
+        $container->addCompilerPass(new RegisterDoctrineTypeCompilerPass());
+        $container->addCompilerPass(new RegisterDoctrineMiddlewareCompilerPass());
     }
 }

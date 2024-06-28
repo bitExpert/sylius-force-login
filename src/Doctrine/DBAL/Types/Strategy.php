@@ -12,9 +12,6 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\DBAL\Types;
 
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\NegatedRegexMatcher;
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\RegexMatcher;
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
@@ -23,9 +20,20 @@ class Strategy extends Type
 {
     public const NAME = 'Strategy';
 
+    /** @var StrategyInterface[] */
+    private array $strategies = [];
+
     public function getName()
     {
         return self::NAME;
+    }
+
+    /**
+     * @param StrategyInterface[] $strategies
+     */
+    public function setStrategies(array $strategies)
+    {
+        $this->strategies = $strategies;
     }
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform)
@@ -39,20 +47,10 @@ class Strategy extends Type
             return parent::convertToPHPValue($value, $platform);
         }
 
-        $staticMatcher = new StaticMatcher();
-        $regexMatcher = new RegexMatcher();
-        $negatedRegexMatcher = new NegatedRegexMatcher();
-
-        if ($value === $staticMatcher->getType()) {
-            return $staticMatcher;
-        }
-
-        if ($value === $regexMatcher->getType()) {
-            return $regexMatcher;
-        }
-
-        if ($value === $negatedRegexMatcher->getType()) {
-            return $negatedRegexMatcher;
+        foreach ($this->strategies as $strategy) {
+            if ($value === $strategy->getType()) {
+                return $strategy;
+            }
         }
 
         throw new \RuntimeException('Unsupported strategy!');
