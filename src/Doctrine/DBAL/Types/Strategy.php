@@ -47,13 +47,11 @@ class Strategy extends Type
             return parent::convertToPHPValue($value, $platform);
         }
 
-        foreach ($this->strategies as $strategy) {
-            if ($value === $strategy->getType()) {
-                return $strategy;
-            }
+        if (isset($this->strategies[$value])) {
+            return $this->strategies[$value];
         }
 
-        throw new \RuntimeException('Unsupported strategy!');
+        throw new \RuntimeException(sprintf('Unsupported strategy "%s"!', $value));
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)

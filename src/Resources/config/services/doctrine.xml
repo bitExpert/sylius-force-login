@@ -5,7 +5,7 @@
 
     <services>
         <service id="bitexpert.sylius_force_customer_login_plugin.doctrine.middleware" class="BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\StrategyTypeConfigurationMiddleware">
+            <argument type="tagged_iterator" tag="force_customer_login.url_strategy"/>
         </service>
-
     </services>
 </container>

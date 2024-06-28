@@ -6,5 +6,6 @@
         <import resource="services/form.xml" />
         <import resource="services/menus.xml" />
         <import resource="services/security.xml" />
+        <import resource="services/strategies.xml" />
     </imports>
 </container>
