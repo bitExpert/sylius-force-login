@@ -24,6 +24,6 @@
 
         <field name="urlRule" type="string" column="url_rule" nullable="false" />
 
-        <field name="strategy" type="string" column="strategy" nullable="false" />
+        <field name="strategy" type="Strategy" column="strategy" nullable="false" />
     </mapped-superclass>
 </doctrine-mapping>
