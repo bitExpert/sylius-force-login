@@ -12,20 +12,35 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Form\Type;
 
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\NegatedRegexMatcher;
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\RegexMatcher;
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class WhitelistEntryType extends AbstractResourceType
 {
+    /**
+     * @param RewindableGenerator $strategies
+     */
+    public function __construct(
+        private readonly iterable $strategies,
+        string $dataClass,
+        array $validationGroups = [],
+    ) {
+        parent::__construct($dataClass, $validationGroups);
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $strategies = [];
+        foreach ($this->strategies as $strategy) {
+            /** @var StrategyInterface $strategy */
+            $strategies[] = $strategy;
+        }
+
         $builder
             ->add('channels', ChannelChoiceType::class, [
                 'multiple' => true,
@@ -41,11 +56,7 @@ class WhitelistEntryType extends AbstractResourceType
                 'empty_data' => '',
             ])
             ->add('strategy', ChoiceType::class, [
-                'choices' => [
-                    new StaticMatcher(),
-                    new RegexMatcher(),
-                    new NegatedRegexMatcher(),
-                ],
+                'choices' => $strategies,
                 'choice_value' => 'name',
                 'choice_label' => function (?StrategyInterface $strategy): string {
                     return is_object($strategy) ? $strategy->getName() : '';

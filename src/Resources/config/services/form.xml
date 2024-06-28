@@ -5,6 +5,7 @@
 
     <services>
         <service id="BitExpert\SyliusForceCustomerLoginPlugin\Form\Type\WhitelistEntryType">
+            <argument type="tagged_iterator" tag="force_customer_login.url_strategy"/>
             <argument>BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry</argument>
             <tag name="form.type" />
         </service>
