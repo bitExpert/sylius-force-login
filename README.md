@@ -97,8 +97,8 @@ Based on the RegEx strategy, but negates the result. Helpful if only a few pages
 ### Add custom strategy
 
 The strategy configuration is meant to be extensible. You can create an own strategy by creating a new class that
-implements the `\BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface` interface and is tagged with 
-`force_customer_login.url_strategy` in your service configuration.
+implements the `\BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface` interface. Your custom class needs
+to be registered as a service and be annotated with `#[AsUrlStrategy]`.
 
 ## Tests
 

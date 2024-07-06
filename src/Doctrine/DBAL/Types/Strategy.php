@@ -31,7 +31,7 @@ class Strategy extends Type
     /**
      * @param StrategyInterface[] $strategies
      */
-    public function setStrategies(array $strategies)
+    public function setStrategies(array $strategies): void
     {
         $this->strategies = $strategies;
     }

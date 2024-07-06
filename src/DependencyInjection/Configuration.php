@@ -61,7 +61,6 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('form')->defaultValue(WhitelistEntryType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
-
                             ->end()
                         ->end()
                     ->end()

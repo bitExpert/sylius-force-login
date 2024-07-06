@@ -12,8 +12,10 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\DependencyInjection;
 
+use BitExpert\SyliusForceCustomerLoginPlugin\Attribute\AsUrlStrategy;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
@@ -27,5 +29,17 @@ final class BitExpertSyliusForceCustomerLoginExtension extends AbstractResourceE
         $loader->load('services.xml');
 
         $this->registerResources('bitexpert_sylius_forcelogin', $config['driver'], $config['resources'], $container);
+
+        $this->registerAutoconfiguration($container);
+    }
+
+    private function registerAutoconfiguration(ContainerBuilder $container): void
+    {
+        $container->registerAttributeForAutoconfiguration(
+            AsUrlStrategy::class,
+            static function (ChildDefinition $definition): void {
+                $definition->addTag(AsUrlStrategy::SERVICE_TAG);
+            },
+        );
     }
 }
