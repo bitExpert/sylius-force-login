@@ -27,7 +27,7 @@ class WhitelistEntry implements WhitelistEntryInterface
 
     private string $urlRule;
 
-    private string $strategy;
+    private StrategyInterface $strategy;
 
     public function __construct()
     {
@@ -85,27 +85,11 @@ class WhitelistEntry implements WhitelistEntryInterface
 
     public function getStrategy(): StrategyInterface
     {
-        $staticMatcher = new StaticMatcher();
-        $regexMatcher = new RegexMatcher();
-        $negatedRegexMatcher = new NegatedRegexMatcher();
-
-        if ($this->strategy === $staticMatcher->getType()) {
-            return $staticMatcher;
-        }
-
-        if ($this->strategy === $regexMatcher->getType()) {
-            return $regexMatcher;
-        }
-
-        if ($this->strategy === $negatedRegexMatcher->getType()) {
-            return $negatedRegexMatcher;
-        }
-
-        throw new \RuntimeException('Unsupported strategy!');
+        return $this->strategy;
     }
 
     public function setStrategy(StrategyInterface $strategy): void
     {
-        $this->strategy = $strategy->getType();
+        $this->strategy = $strategy;
     }
 }

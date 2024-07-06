@@ -94,6 +94,12 @@ Rule is based on [regular expression](https://en.wikipedia.org/wiki/Regular_expr
 #### Negated RegEx
 Based on the RegEx strategy, but negates the result. Helpful if only a few pages should be restricted.
 
+### Add custom strategy
+
+The strategy configuration is meant to be extensible. You can create an own strategy by creating a new class that
+implements the `\BitExpert\SyliusForceCustomerLoginPlugin\Model\StrategyInterface` interface and is tagged with 
+`force_customer_login.url_strategy` in your service configuration.
+
 ## Tests
 
 You can run the unit tests with the following command (requires dependency installation):

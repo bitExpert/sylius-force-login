@@ -4,10 +4,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="BitExpert\SyliusForceCustomerLoginPlugin\Form\Type\WhitelistEntryType">
+        <service id="bitexpert.sylius_force_customer_login_plugin.doctrine.middleware" class="BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\StrategyTypeConfigurationMiddleware">
             <argument type="tagged_iterator" tag="force_customer_login.url_strategy"/>
-            <argument>BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry</argument>
-            <tag name="form.type" />
         </service>
     </services>
 </container>
