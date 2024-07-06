@@ -28,7 +28,7 @@ class RegisterDoctrineMiddlewareCompilerPass implements CompilerPassInterface
 
         $middlewareMethodCallArgs = $this->extractMethodCallArgs($configDefinition);
         $middlewareMethodCallArgs[0] = array_merge(
-            $setMiddlewaresMethodCallArguments[0] ?? [],
+            $middlewareMethodCallArgs[0] ?? [],
             [new Reference('bitexpert.sylius_force_customer_login_plugin.doctrine.middleware')],
         );
 
@@ -37,7 +37,7 @@ class RegisterDoctrineMiddlewareCompilerPass implements CompilerPassInterface
             ->addMethodCall('setMiddlewares', $middlewareMethodCallArgs);
     }
 
-    /** @return array[] */
+    /** @return Reference[] */
     private function extractMethodCallArgs(Definition $definition): array
     {
         foreach ($definition->getMethodCalls() as $methodCall) {
