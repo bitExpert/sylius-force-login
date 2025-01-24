@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Model;
 
+use BitExpert\SyliusForceCustomerLoginPlugin\Attribute\AsUrlStrategy;
+
+#[AsUrlStrategy]
 class StaticMatcher implements StrategyInterface
 {
     public function getType(): string
