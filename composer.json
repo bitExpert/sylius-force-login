@@ -12,12 +12,12 @@
     ],
     "require": {
         "php": "^8.2",
-        "madewithlove/license-checker": "^1.6",
         "sylius/sylius": "^2.0"
     },
     "require-dev": {
         "captainhook/captainhook": "^5.19",
         "captainhook/plugin-composer": "^5.3",
+        "madewithlove/license-checker": "^1.6",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.0",
         "phpstan/phpstan-doctrine": "^2.0",
