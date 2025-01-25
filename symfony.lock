@@ -52,15 +52,6 @@
             "migrations/.gitignore"
         ]
     },
-    "friends-of-behat/symfony-extension": {
-        "version": "2.4",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "main",
-            "version": "2.0",
-            "ref": "1e012e04f573524ca83795cd19df9ea690adb604"
-        }
-    },
     "knplabs/knp-gaufrette-bundle": {
         "version": "v0.8.0"
     },
