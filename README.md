@@ -15,8 +15,8 @@ able to browse the website or the product catalog.
 * Multistore-Support: Define if whitelist rules either apply globally or for specific stores
 
 ## Requirements:
-* PHP 8.1 or higher
-* Sylius 1.14 or higher
+* PHP 8.2 or higher
+* Sylius 2.0 or higher
 
 ## Installation
 
