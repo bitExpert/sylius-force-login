@@ -12,6 +12,7 @@
     ],
     "require": {
         "php": "^8.2",
+        "madewithlove/license-checker": "^1.6",
         "sylius/sylius": "^2.0"
     },
     "require-dev": {
@@ -81,6 +82,7 @@
         ],
         "cs-check": "vendor/bin/ecs check",
         "cs-fix": "vendor/bin/ecs check --fix",
+        "check-license": "vendor/bin/license-checker check",
         "analyze": "vendor/bin/phpstan analyze",
         "test": "vendor/bin/phpunit",
         "coverage": "vendor/bin/phpunit --coverage-clover clover.xml"
