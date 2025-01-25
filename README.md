@@ -16,7 +16,7 @@ able to browse the website or the product catalog.
 
 ## Requirements:
 * PHP 8.1 or higher
-* Sylius 1.13 or higher
+* Sylius 1.14 or higher
 
 ## Installation
 
