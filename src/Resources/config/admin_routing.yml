@@ -2,14 +2,10 @@ bitexpert_sylius_forcelogin_admin_whitelist_entry_index:
   resource: |
     alias: bitexpert_sylius_forcelogin.whitelist_entry
     section: admin
-    templates: "@SyliusAdmin\\Crud"
+    templates: "@SyliusAdmin\\shared\\crud"
+    except: ['show']
     redirect: update
     grid: bitexpert_sylius_forcelogin_whitelist_entity
-    vars:
-        all:
-            subheader: bitexpert_sylius_forcelogin.ui.manage_whitelist
-            templates:
-                form: "@BitExpertSyliusForceCustomerLoginPlugin/Admin/Whitelist/_form.html.twig"
-        index:
-            icon: 'check circle outline'
+    form:
+        type: BitExpert\SyliusForceCustomerLoginPlugin\Form\Type\WhitelistEntryType
   type: sylius.resource

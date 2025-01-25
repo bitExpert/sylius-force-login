@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "sylius/sylius": "^1.14"
+        "php": "^8.2",
+        "sylius/sylius": "^2.0"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -38,28 +38,26 @@
         "phpunit/phpunit": "^10.5",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "sylius-labs/coding-standard": "^4.2",
-        "symfony/browser-kit": "^5.4 || ^6.0",
-        "symfony/debug-bundle": "^5.4 || ^6.0",
-        "symfony/dotenv": "^5.4 || ^6.0",
+        "symfony/browser-kit": "^7.0",
+        "symfony/debug-bundle": "^7.0",
+        "symfony/dotenv": "^7.0",
         "symfony/flex": "^2.2.2",
-        "symfony/intl": "^5.4 || ^6.0",
-        "symfony/web-profiler-bundle": "^5.4 || ^6.0"
-    },
-    "conflict": {
-        "symfony/framework-bundle": "6.2.8"
+        "symfony/intl": "^7.0",
+        "symfony/web-profiler-bundle": "^7.0"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
+            "captainhook/plugin-composer": true,
             "dealerdirect/phpcodesniffer-composer-installer": false,
+            "php-http/discovery": true,
             "phpstan/extension-installer": true,
-            "symfony/flex": true,
-            "captainhook/plugin-composer": true
+            "symfony/flex": true
         }
     },
     "extra": {
         "symfony": {
-            "require": "^5.4 || ^6.0"
+            "require": "^7.0"
         }
     },
     "autoload": {

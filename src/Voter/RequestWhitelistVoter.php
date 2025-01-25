@@ -28,7 +28,7 @@ class RequestWhitelistVoter implements VoterInterface
     ) {
     }
 
-    public function vote(TokenInterface $token, mixed $subject, array $attributes)
+    public function vote(TokenInterface $token, mixed $subject, array $attributes): int
     {
         if (!$subject instanceof Request) {
             return self::ACCESS_ABSTAIN;
