@@ -1,5 +1,7 @@
 # Force Login Plugin for Sylius
 
+[![Build Status](https://github.com/bitExpert/sylius-force-login/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/bitExpert/sylius-force-login/actions)
+[![installs on Packagist](https://img.shields.io/packagist/dt/bitexpert/sylius-force-login-plugin)](https://packagist.org/packages/bitexpert/sylius-force-login-plugin/)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109408681246972700?domain=https://rheinneckar.social)](https://rheinneckar.social/@bitexpert)
 
 The **Force Login** Plugin for *Sylius* allows you to restrict which pages a visitor is
