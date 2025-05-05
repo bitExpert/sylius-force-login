@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Model;
 
-use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Core\Model\Channel;
@@ -24,8 +23,9 @@ class WhitelistEntryTest extends TestCase
      */
     public function addChannelToWhitelist(): void
     {
-        $channel = new class extends Channel {
-            public function getId() {
+        $channel = new class() extends Channel {
+            public function getId()
+            {
                 return 123;
             }
         };
@@ -43,8 +43,9 @@ class WhitelistEntryTest extends TestCase
      */
     public function addSameChannelToWhitelistOnlyOnce(): void
     {
-        $channel = new class extends Channel {
-            public function getId() {
+        $channel = new class() extends Channel {
+            public function getId()
+            {
                 return 123;
             }
         };
@@ -62,8 +63,9 @@ class WhitelistEntryTest extends TestCase
      */
     public function removeChannelFromWhitelist(): void
     {
-        $channel = new class extends Channel {
-            public function getId() {
+        $channel = new class() extends Channel {
+            public function getId()
+            {
                 return 123;
             }
         };
@@ -81,8 +83,9 @@ class WhitelistEntryTest extends TestCase
      */
     public function removeChannelFromWhitelistMultipleTimesCausesNoError(): void
     {
-        $channel = new class extends Channel {
-            public function getId() {
+        $channel = new class() extends Channel {
+            public function getId()
+            {
                 return 123;
             }
         };
