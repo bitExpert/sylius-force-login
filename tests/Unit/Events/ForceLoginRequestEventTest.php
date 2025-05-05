@@ -21,14 +21,18 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 {
     private Security $securityMock;
+
     private RequestEvent $eventMock;
+
     private ForceLoginRequestEvent $forceLoginRequestEvent;
 
     protected function setUp(): void
     {
+        $locale = 'en';
+
         $this->securityMock = $this->createMock(Security::class);
         $this->eventMock = $this->createMock(RequestEvent::class);
-        $this->forceLoginRequestEvent = new ForceLoginRequestEvent($this->securityMock);
+        $this->forceLoginRequestEvent = new ForceLoginRequestEvent($this->securityMock, $locale);
     }
 
     /**
@@ -59,6 +63,21 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * @dataProvider whitelistedUrlsWithLocale
+     */
+    public function whitelistedUrlsWithLocaleAlwaysGrantAccess(string $url): void
+    {
+        $request = Request::create($url);
+
+        $this->eventMock->method('isMainRequest')->willReturn(true);
+        $this->eventMock->method('getRequest')->willReturn($request);
+        $this->securityMock->method('isGranted')->with('pathInfo', $url)->willReturn(true);
+
+        $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
+        $this->assertTrue(true);
+    }
+
+    /**
      * @test
      */
     public function urlWithNoAccessGrantedThrowsAccessDeniedException(): void
@@ -70,7 +89,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 
         $this->eventMock->method('isMainRequest')->willReturn(true);
         $this->eventMock->method('getRequest')->willReturn($request);
-        $this->securityMock->method('isGranted')->with('pathInfo', $request)->willReturn(false);
+        $this->securityMock->method('isGranted')->with('pathInfo', $url)->willReturn(false);
 
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
     }
@@ -85,7 +104,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 
         $this->eventMock->method('isMainRequest')->willReturn(true);
         $this->eventMock->method('getRequest')->willReturn($request);
-        $this->securityMock->method('isGranted')->with('pathInfo', $request)->willReturn(true);
+        $this->securityMock->method('isGranted')->with('pathInfo', $url)->willReturn(true);
 
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
         $this->assertTrue(true);
@@ -103,6 +122,17 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
             ['/cart'],
             ['/checkout'],
             ['/ajax'],
+        ];
+    }
+
+    public function whitelistedUrlsWithLocale(): array
+    {
+        return [
+            ['/en'],
+            ['/en/login'],
+            ['/en/register'],
+            ['/en/cart'],
+            ['/en/checkout'],
         ];
     }
 }

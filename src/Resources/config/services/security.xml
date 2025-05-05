@@ -6,13 +6,13 @@
     <services>
         <service id="BitExpert\SyliusForceCustomerLoginPlugin\Events\ForceLoginRequestEvent">
             <argument type="service" id="Symfony\Bundle\SecurityBundle\Security" />
+            <argument>%locale%</argument>
             <tag name="kernel.event_subscriber" />
         </service>
 
         <service id="BitExpert\SyliusForceCustomerLoginPlugin\Voter\RequestWhitelistVoter">
             <argument type="service" id="BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM\WhitelistEntryRepository" />
             <argument type="service" id="Sylius\Component\Channel\Context\ChannelContextInterface" />
-            <argument>%locale%</argument>
             <tag name="security.voter" />
         </service>
     </services>

@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ForceLoginRequestEvent implements EventSubscriberInterface
 {
-    public function __construct(private Security $security)
+    public function __construct(private Security $security, private string $locale)
     {
     }
 
@@ -39,7 +39,7 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
         $request = $event->getRequest();
 
         // whitelist "default" urls that should always work
-        $pathInfo = $request->getPathInfo();
+        $pathInfo = $this->removeLocaleFromPathInfo($request->getPathInfo());
         if ($pathInfo === '/' ||
             str_starts_with($pathInfo, '/_wdt') ||
             str_starts_with($pathInfo, '/_profiler') ||
@@ -54,8 +54,15 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
         }
 
         // for any other url query the security framework
-        if (!$this->security->isGranted('pathInfo', $request)) {
+        if (!$this->security->isGranted('pathInfo', $pathInfo)) {
             throw new AccessDeniedException();
         }
+    }
+
+    protected function removeLocaleFromPathInfo(string $pathInfo): string
+    {
+        $count = 1;
+
+        return str_replace('/' . $this->locale . '/', '/', $pathInfo, $count);
     }
 }
