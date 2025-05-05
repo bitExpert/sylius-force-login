@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.4.0
+
+### Added
+
+- [#47](https://github.com/bitExpert/sylius-force-login/pull/47) Update phpunit/phpunit requirement to ^11.5
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#48](https://github.com/bitExpert/sylius-force-login/pull/48) Move locale stripping logic to event subscriber
+
 ## 0.3.1
 
 ### Added
