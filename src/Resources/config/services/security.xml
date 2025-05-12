@@ -4,8 +4,11 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="bitexpert.sylius_force_customer_login_plugin.default_route_checker" class="BitExpert\SyliusForceCustomerLoginPlugin\Http\DefaultRouteChecker" />
+
         <service id="BitExpert\SyliusForceCustomerLoginPlugin\Events\ForceLoginRequestEvent">
             <argument type="service" id="Symfony\Bundle\SecurityBundle\Security" />
+            <argument type="service" id="bitexpert.sylius_force_customer_login_plugin.default_route_checker" />
             <argument>%locale%</argument>
             <tag name="kernel.event_subscriber" />
         </service>

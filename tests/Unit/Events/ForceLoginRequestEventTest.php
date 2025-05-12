@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Tests\BitExpert\SyliusForceCustomerLoginPlugin\Unit\Events;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Events\ForceLoginRequestEvent;
+use BitExpert\SyliusForceCustomerLoginPlugin\Http\DefaultRouteChecker;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -26,13 +27,16 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 
     private ForceLoginRequestEvent $forceLoginRequestEvent;
 
+    private DefaultRouteChecker $defaultRouteCheck;
+
     protected function setUp(): void
     {
         $locale = 'en';
 
         $this->securityMock = $this->createMock(Security::class);
         $this->eventMock = $this->createMock(RequestEvent::class);
-        $this->forceLoginRequestEvent = new ForceLoginRequestEvent($this->securityMock, $locale);
+        $this->defaultRouteCheck = new DefaultRouteChecker();
+        $this->forceLoginRequestEvent = new ForceLoginRequestEvent($this->securityMock, $this->defaultRouteCheck, $locale);
     }
 
     /**
@@ -113,7 +117,6 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
     public function whitelistedUrls(): array
     {
         return [
-            ['/'],
             ['/_wdt'],
             ['/profiler'],
             ['/admin'],
