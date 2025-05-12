@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.5.0
+
+### Added
+
+- [#49](https://github.com/bitExpert/sylius-force-login/pull/49) Make default routes configurable
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
 ## 0.4.0
 
 ### Added
