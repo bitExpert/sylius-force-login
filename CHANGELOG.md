@@ -16,6 +16,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
+### Fixed
+
+- Nothing.
+
 ## 0.4.0
 
 ### Added
