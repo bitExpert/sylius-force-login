@@ -12,15 +12,19 @@ declare(strict_types=1);
 
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Events;
 
+use BitExpert\SyliusForceCustomerLoginPlugin\Http\DefaultRouteCheckerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ForceLoginRequestEvent implements EventSubscriberInterface
+final readonly class ForceLoginRequestEvent implements EventSubscriberInterface
 {
-    public function __construct(private Security $security, private string $locale)
-    {
+    public function __construct(
+        private Security $security,
+        private DefaultRouteCheckerInterface $defaultRouteChecker,
+        private string $locale,
+    ) {
     }
 
     public static function getSubscribedEvents(): array
@@ -40,16 +44,7 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
 
         // whitelist "default" urls that should always work
         $pathInfo = $this->removeLocaleFromPathInfo($request->getPathInfo());
-        if ($pathInfo === '/' ||
-            str_starts_with($pathInfo, '/_wdt') ||
-            str_starts_with($pathInfo, '/_profiler') ||
-            str_starts_with($pathInfo, '/api') ||
-            str_starts_with($pathInfo, '/admin') ||
-            str_contains($pathInfo, '/login') ||
-            str_contains($pathInfo, '/register') ||
-            str_contains($pathInfo, '/cart') ||
-            str_contains($pathInfo, '/checkout') ||
-            str_contains($pathInfo, '/ajax')) {
+        if ($this->defaultRouteChecker->isDefaultRoute($pathInfo)) {
             return;
         }
 
@@ -59,7 +54,7 @@ class ForceLoginRequestEvent implements EventSubscriberInterface
         }
     }
 
-    protected function removeLocaleFromPathInfo(string $pathInfo): string
+    private function removeLocaleFromPathInfo(string $pathInfo): string
     {
         $count = 1;
 
