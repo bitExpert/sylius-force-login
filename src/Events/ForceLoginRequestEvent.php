@@ -16,12 +16,14 @@ use BitExpert\SyliusForceCustomerLoginPlugin\Http\DefaultRouteCheckerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 final readonly class ForceLoginRequestEvent implements EventSubscriberInterface
 {
     public function __construct(
         private Security $security,
+        private TokenStorageInterface $tokenStorage,
         private DefaultRouteCheckerInterface $defaultRouteChecker,
         private string $locale,
     ) {
@@ -40,10 +42,14 @@ final readonly class ForceLoginRequestEvent implements EventSubscriberInterface
             return;
         }
 
+        if ($this->tokenStorage->getToken()?->getUser() !== null) {
+            return;
+        }
+
         $request = $event->getRequest();
+        $pathInfo = $this->removeLocaleFromPathInfo($request->getPathInfo());
 
         // whitelist "default" urls that should always work
-        $pathInfo = $this->removeLocaleFromPathInfo($request->getPathInfo());
         if ($this->defaultRouteChecker->isDefaultRoute($pathInfo)) {
             return;
         }
