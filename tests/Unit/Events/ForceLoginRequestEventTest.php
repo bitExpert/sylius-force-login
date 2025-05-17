@@ -17,11 +17,16 @@ use BitExpert\SyliusForceCustomerLoginPlugin\Http\DefaultRouteChecker;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 {
     private Security $securityMock;
+
+    private TokenStorageInterface $tokenStorage;
 
     private RequestEvent $eventMock;
 
@@ -34,9 +39,16 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         $locale = 'en';
 
         $this->securityMock = $this->createMock(Security::class);
+        $this->tokenStorage = $this->createMock(TokenStorageInterface::class);
         $this->eventMock = $this->createMock(RequestEvent::class);
         $this->defaultRouteCheck = new DefaultRouteChecker();
-        $this->forceLoginRequestEvent = new ForceLoginRequestEvent($this->securityMock, $this->defaultRouteCheck, $locale);
+
+        $this->forceLoginRequestEvent = new ForceLoginRequestEvent(
+            $this->securityMock,
+            $this->tokenStorage,
+            $this->defaultRouteCheck,
+            $locale,
+        );
     }
 
     /**
@@ -52,6 +64,22 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * @test
+     */
+    public function requestEventIsIgnoredForLoggedInUser(): void
+    {
+        $user = $this->createMock(UserInterface::class);
+        $token = new UsernamePasswordToken($user, 'test');
+
+        $this->eventMock->method('isMainRequest')->willReturn(false);
+        $this->eventMock->expects($this->never())->method('getRequest');
+        $this->tokenStorage->method('getToken')->willReturn($token);
+        $this->securityMock->expects($this->never())->method('isGranted');
+
+        $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
+    }
+
+    /**
      * @dataProvider whitelistedUrls
      */
     public function whitelistedUrlsAlwaysGrantAccess(string $url): void
@@ -60,6 +88,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 
         $this->eventMock->method('isMainRequest')->willReturn(true);
         $this->eventMock->method('getRequest')->willReturn($request);
+        $this->tokenStorage->method('getToken')->willReturn(null);
         $this->securityMock->method('isGranted')->with('pathInfo', $request)->willReturn(true);
 
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
@@ -75,6 +104,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 
         $this->eventMock->method('isMainRequest')->willReturn(true);
         $this->eventMock->method('getRequest')->willReturn($request);
+        $this->tokenStorage->method('getToken')->willReturn(null);
         $this->securityMock->method('isGranted')->with('pathInfo', $url)->willReturn(true);
 
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
@@ -93,6 +123,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 
         $this->eventMock->method('isMainRequest')->willReturn(true);
         $this->eventMock->method('getRequest')->willReturn($request);
+        $this->tokenStorage->method('getToken')->willReturn(null);
         $this->securityMock->method('isGranted')->with('pathInfo', $url)->willReturn(false);
 
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
@@ -108,6 +139,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
 
         $this->eventMock->method('isMainRequest')->willReturn(true);
         $this->eventMock->method('getRequest')->willReturn($request);
+        $this->tokenStorage->method('getToken')->willReturn(null);
         $this->securityMock->method('isGranted')->with('pathInfo', $url)->willReturn(true);
 
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
