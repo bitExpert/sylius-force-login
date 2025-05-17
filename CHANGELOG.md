@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.6.0
+
+### Added
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#50](https://github.com/bitExpert/sylius-force-login/pull/50) Do not run the whitelist checks for users already logged in
+
 ## 0.5.0
 
 ### Added
