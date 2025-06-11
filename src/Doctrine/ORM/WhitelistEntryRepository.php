@@ -13,6 +13,8 @@ declare(strict_types=1);
 namespace BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntryInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query\Parameter;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Model\ChannelInterface;
 
@@ -25,8 +27,9 @@ class WhitelistEntryRepository extends EntityRepository implements WhitelistEntr
     {
         $qb = $this->createQueryBuilder('p')
             ->where(':channel MEMBER OF p.channels')
-            ->setParameters(['channel' => $channel])
-        ;
+            ->setParameters(new ArrayCollection([
+                new Parameter('channel', $channel),
+            ]));
 
         $result = $qb->getQuery()->getResult();
 
