@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.7.0
+
+### Added
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#51](https://github.com/bitExpert/sylius-force-login/pull/51) Fix Doctrine ORM 3 compability
+
 ## 0.6.0
 
 ### Added
