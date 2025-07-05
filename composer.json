@@ -26,6 +26,7 @@
         "phpunit/phpunit": "^11.5",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "sylius-labs/coding-standard": "^4.2",
+        "sylius/test-application": "2.1.x-dev",
         "symfony/browser-kit": "^7.0",
         "symfony/debug-bundle": "^7.0",
         "symfony/dotenv": "^7.0",
@@ -40,13 +41,15 @@
             "dealerdirect/phpcodesniffer-composer-installer": false,
             "php-http/discovery": true,
             "phpstan/extension-installer": true,
-            "symfony/flex": true
+            "symfony/flex": true,
+            "symfony/runtime": true
         }
     },
     "extra": {
         "symfony": {
             "require": "^7.0"
-        }
+        },
+        "public-dir": "vendor/sylius/test-application/public"
     },
     "autoload": {
         "psr-4": {
@@ -56,10 +59,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\BitExpert\\SyliusForceCustomerLoginPlugin\\": "tests/"
-        },
-        "classmap": [
-            "tests/Application/Kernel.php"
-        ]
+        }
     },
     "scripts": {
         "post-install-cmd": [

@@ -1,0 +1,4 @@
+# This is just needed to make the Test Application load the routes
+bitexpert_sylius_forcelogin:
+  resource: "@BitExpertSyliusForceCustomerLoginPlugin/Resources/config/admin_routing.yml"
+  prefix: '/%sylius_admin.path_name%'
