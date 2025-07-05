@@ -11,6 +11,8 @@ jobs:
     strategy:
       matrix:
         operating-system: ['ubuntu-latest']
+        dependencies: ['lowest', 'highest']
+        symfony: ['^6.4', '^7.1']
         php-versions: ['8.2', '8.3', '8.4']
 
     steps:
@@ -26,7 +28,11 @@ jobs:
           extensions: bcmath, gd
 
       - name: Install Composer dependencies
-        run: composer install
+        uses: "ramsey/composer-install@v3"
+        env:
+          SYMFONY_REQUIRE: "${{ matrix.symfony }}"
+        with:
+          dependency-versions: "${{ matrix.dependencies }}"
 
       - name: Composer license check
         run: composer check-license
