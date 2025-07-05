@@ -111,5 +111,11 @@ You can run the unit tests with the following command (requires dependency insta
 ## Contribution
 Feel free to contribute to this module by reporting issues or create some pull requests for improvements.
 
+To run the Test Application included in the repo, refer to the [Sylius Test Application](https://docs.sylius.com/sylius-plugins/plugins-development-guide/testapplication) docs.
+If you are using [DDEV](https://www.ddev.com) you can run the following command to bootstrap the Test Application in Docker: 
+```bash
+ddev start && ddev bootstrap
+```
+
 ## License
 The **Force Login** Module for *Sylius* is released under the MIT license.

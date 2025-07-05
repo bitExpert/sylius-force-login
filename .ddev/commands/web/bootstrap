@@ -1,0 +1,16 @@
+#!/bin/bash
+
+## Description: Bootstrap the test application
+
+composer install
+# Run default Sylius migrations
+vendor/bin/console doctrine:migration:migrate -n
+# Run the migrations for the Force Login module
+vendor/bin/console doctrine:migration:diff --namespace=App\\Migrations
+vendor/bin/console doctrine:migration:migrate -n
+# Install default fixtures
+vendor/bin/console sylius:fixtures:load -n
+# Build and install frontend dependencies
+(cd vendor/sylius/test-application && yarn install)
+(cd vendor/sylius/test-application && yarn run build:prod)
+vendor/bin/console assets:install
