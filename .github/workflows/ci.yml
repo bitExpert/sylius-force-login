@@ -37,7 +37,10 @@ jobs:
       - name: Validate composer
         run: composer validate --strict
 
-      - name: Composer license check
+      - name: Check composer normalized
+        run: composer normalize --dry-run
+
+      - name: Validate package licenses
         run: composer check-license
 
       - name: Check code style
