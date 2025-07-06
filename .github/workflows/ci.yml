@@ -34,6 +34,9 @@ jobs:
         with:
           dependency-versions: "${{ matrix.dependencies }}"
 
+      - name: Validate composer
+        run: composer validate --strict
+
       - name: Composer license check
         run: composer check-license
 
