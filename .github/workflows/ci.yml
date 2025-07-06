@@ -40,8 +40,11 @@ jobs:
       - name: Composer license check
         run: composer check-license
 
-      - name: Codesniffer
+      - name: Check code style
         run: composer cs-check
+
+      - name: Check Twig style
+        run: composer cs-twig
 
       - name: Static Code Analysis
         run: composer analyze

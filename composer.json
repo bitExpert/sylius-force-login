@@ -35,7 +35,8 @@
         "symfony/flex": "^2.2.2",
         "symfony/intl": "^6.4 || ^7.1",
         "symfony/web-profiler-bundle": "^6.4 || ^7.1",
-        "symplify/easy-coding-standard": "^12.5"
+        "symplify/easy-coding-standard": "^12.5",
+        "vincentlanglet/twig-cs-fixer": "^3.8"
     },
     "config": {
         "sort-packages": true,
@@ -85,6 +86,7 @@
         ],
         "cs-check": "vendor/bin/ecs check",
         "cs-fix": "vendor/bin/ecs check --fix",
+        "cs-twig": "vendor/bin/twig-cs-fixer lint src/Resources/views",
         "check-license": "vendor/bin/license-checker check",
         "analyze": "vendor/bin/phpstan analyze",
         "test": "vendor/bin/phpunit",
