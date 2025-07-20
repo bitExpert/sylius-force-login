@@ -14,6 +14,8 @@ namespace Tests\BitExpert\SyliusForceCustomerLoginPlugin\Unit\Events;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Events\ForceLoginRequestEvent;
 use BitExpert\SyliusForceCustomerLoginPlugin\Http\DefaultRouteChecker;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -51,9 +53,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function requestEventIsIgnoredForSubRequest(): void
     {
         $this->eventMock->method('isMainRequest')->willReturn(false);
@@ -63,9 +63,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function requestEventIsIgnoredForLoggedInUser(): void
     {
         $user = $this->createMock(UserInterface::class);
@@ -79,9 +77,8 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
     }
 
-    /**
-     * @dataProvider whitelistedUrls
-     */
+    #[Test]
+    #[DataProvider('whitelistedUrls')]
     public function whitelistedUrlsAlwaysGrantAccess(string $url): void
     {
         $request = Request::create($url);
@@ -95,9 +92,8 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @dataProvider whitelistedUrlsWithLocale
-     */
+    #[Test]
+    #[DataProvider('whitelistedUrlsWithLocale')]
     public function whitelistedUrlsWithLocaleAlwaysGrantAccess(string $url): void
     {
         $request = Request::create($url);
@@ -111,9 +107,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function urlWithNoAccessGrantedThrowsAccessDeniedException(): void
     {
         $this->expectException(AccessDeniedException::class);
@@ -129,9 +123,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         $this->forceLoginRequestEvent->onKernelRequest($this->eventMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function accessGrantedSucceeds(): void
     {
         $url = '/taxons/caps/with-pompons';
@@ -146,11 +138,11 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(true);
     }
 
-    public function whitelistedUrls(): array
+    public static function whitelistedUrls(): array
     {
         return [
             ['/_wdt'],
-            ['/profiler'],
+            ['/_profiler'],
             ['/admin'],
             ['/login'],
             ['/register'],
@@ -160,7 +152,7 @@ class ForceLoginRequestEventTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function whitelistedUrlsWithLocale(): array
+    public static function whitelistedUrlsWithLocale(): array
     {
         return [
             ['/en'],

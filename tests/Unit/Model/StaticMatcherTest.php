@@ -14,13 +14,12 @@ namespace Tests\BitExpert\SyliusForceCustomerLoginPlugin\Unit\Model;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class StaticMatcherTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function checkMatcherType(): void
     {
         $matcher = new StaticMatcher();
@@ -28,9 +27,7 @@ class StaticMatcherTest extends TestCase
         $this->assertEquals('static', $matcher->getType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function routeIsStaticMatch(): void
     {
         $whitelistEntry = new WhitelistEntry();
@@ -43,9 +40,7 @@ class StaticMatcherTest extends TestCase
         $this->assertTrue($matcher->isMatch($pathInfo, $whitelistEntry));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function routeIsNoStaticMatch(): void
     {
         $whitelistEntry = new WhitelistEntry();

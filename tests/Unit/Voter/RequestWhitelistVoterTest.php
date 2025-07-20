@@ -16,6 +16,7 @@ use BitExpert\SyliusForceCustomerLoginPlugin\Doctrine\ORM\WhitelistEntryReposito
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\StaticMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
 use BitExpert\SyliusForceCustomerLoginPlugin\Voter\RequestWhitelistVoter;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -42,9 +43,7 @@ class RequestWhitelistVoterTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function voteAbstainForNonRequestSubjects()
     {
         $token = $this->createMock(TokenInterface::class);
@@ -55,9 +54,7 @@ class RequestWhitelistVoterTest extends TestCase
         $this->assertEquals(VoterInterface::ACCESS_ABSTAIN, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function voteGrantedWhenRequestUriMatchesWhitelistEntry()
     {
         $url = '/taxons/caps/simple/';
@@ -77,9 +74,7 @@ class RequestWhitelistVoterTest extends TestCase
         $this->assertEquals(VoterInterface::ACCESS_GRANTED, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function voteDeniedWhenRequestUriDoesNotMatchWhitelistEntry()
     {
         $url = '/taxons/caps/simple/';
@@ -99,9 +94,7 @@ class RequestWhitelistVoterTest extends TestCase
         $this->assertEquals(VoterInterface::ACCESS_DENIED, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function voteAbstainedWhenSubjectTypeDoesNotMatchString()
     {
         $url = $this->createMock(Request::class);

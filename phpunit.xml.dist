@@ -3,6 +3,11 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/8.5/phpunit.xsd"
          colors="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         failOnPhpunitDeprecation="false"
          bootstrap="tests/Unit/bootstrap.php">
     <testsuites>
         <testsuite name="default">
