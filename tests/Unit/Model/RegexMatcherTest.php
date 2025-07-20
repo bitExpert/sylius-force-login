@@ -14,13 +14,12 @@ namespace Tests\BitExpert\SyliusForceCustomerLoginPlugin\Unit\Model;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\RegexMatcher;
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class RegexMatcherTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function checkMatcherType(): void
     {
         $matcher = new RegexMatcher();
@@ -28,9 +27,7 @@ class RegexMatcherTest extends TestCase
         $this->assertEquals('regex', $matcher->getType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function routeIsRegexMatch(): void
     {
         $whitelistEntry = new WhitelistEntry();
@@ -43,9 +40,7 @@ class RegexMatcherTest extends TestCase
         $this->assertTrue($matcher->isMatch($pathInfo, $whitelistEntry));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function routeIsNoRegexMatch(): void
     {
         $whitelistEntry = new WhitelistEntry();

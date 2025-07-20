@@ -13,14 +13,13 @@ declare(strict_types=1);
 namespace Model;
 
 use BitExpert\SyliusForceCustomerLoginPlugin\Model\WhitelistEntry;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Core\Model\Channel;
 
 class WhitelistEntryTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function addChannelToWhitelist(): void
     {
         $channel = new class() extends Channel {
@@ -38,9 +37,7 @@ class WhitelistEntryTest extends TestCase
         $this->assertTrue($whitelistEntry->hasChannel($channel));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addSameChannelToWhitelistOnlyOnce(): void
     {
         $channel = new class() extends Channel {
@@ -58,9 +55,7 @@ class WhitelistEntryTest extends TestCase
         $this->assertCount(1, $whitelistEntry->getChannels());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function removeChannelFromWhitelist(): void
     {
         $channel = new class() extends Channel {
@@ -78,9 +73,7 @@ class WhitelistEntryTest extends TestCase
         $this->assertCount(0, $whitelistEntry->getChannels());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function removeChannelFromWhitelistMultipleTimesCausesNoError(): void
     {
         $channel = new class() extends Channel {
