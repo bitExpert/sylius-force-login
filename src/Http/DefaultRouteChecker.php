@@ -21,6 +21,7 @@ final readonly class DefaultRouteChecker implements DefaultRouteCheckerInterface
             str_starts_with($route, '/api') ||
             str_starts_with($route, '/admin') ||
             str_contains($route, '/login') ||
+            str_contains($route, '/forgotten-password') ||
             str_contains($route, '/register') ||
             str_contains($route, '/cart') ||
             str_contains($route, '/checkout') ||
