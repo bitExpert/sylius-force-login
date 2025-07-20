@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.8.0
+
+### Added
+
+- [#56](https://github.com/bitExpert/sylius-force-login/pull/56) Migrate to PHPUnit 11 attributes
+- [#54](https://github.com/bitExpert/sylius-force-login/pull/54) Add more checks to CI pipeline
+- [#53](https://github.com/bitExpert/sylius-force-login/pull/53) Check for a wider range of dependencies in CI
+
+### Deprecated
+
+- [#52](https://github.com/bitExpert/sylius-force-login/pull/52) Migrate to Sylius Test Application incl. DDEV
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#55](https://github.com/bitExpert/sylius-force-login/pull/55) Add /forgotten-password to default whitelist
+
 ## 0.7.0
 
 ### Added
