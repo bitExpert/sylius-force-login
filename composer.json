@@ -28,7 +28,7 @@
         "phpstan/phpstan-webmozart-assert": "^2.0",
         "phpunit/phpunit": "^11.5",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
-        "slevomat/coding-standard": "8.16.0",
+        "slevomat/coding-standard": "8.28.1",
         "sylius-labs/coding-standard": "^4.4",
         "sylius/test-application": "2.1.x-dev",
         "symfony/browser-kit": "^6.4 || ^7.1",
