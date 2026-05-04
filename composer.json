@@ -15,7 +15,7 @@
         "sylius/sylius": "^2.1"
     },
     "require-dev": {
-        "bitexpert/phpstan-sylius": "^0.1",
+        "bitexpert/phpstan-sylius": "^0.3",
         "captainhook/captainhook": "^5.19",
         "captainhook/plugin-composer": "^5.3",
         "ergebnis/composer-normalize": "^2.47",
