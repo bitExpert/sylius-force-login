@@ -1,0 +1,5 @@
+#!/bin/bash
+
+## Description: Run Sylius Console Command
+
+./vendor/bin/console $1
