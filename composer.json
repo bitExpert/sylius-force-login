@@ -33,7 +33,7 @@
         "sylius/test-application": "2.1.x-dev",
         "symfony/browser-kit": "^6.4 || ^7.1",
         "symfony/debug-bundle": "^6.4 || ^7.1",
-        "symfony/dotenv": "^6.4 || ^7.1",
+        "symfony/dotenv": "^8.1.6",
         "symfony/flex": "^2.2.2",
         "symfony/intl": "^6.4 || ^7.1",
         "symfony/web-profiler-bundle": "^6.4 || ^7.1",
