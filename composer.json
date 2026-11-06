@@ -19,7 +19,7 @@
         "captainhook/captainhook": "^5.19",
         "captainhook/plugin-composer": "^5.3",
         "ergebnis/composer-normalize": "^2.47",
-        "madewithlove/license-checker": "^1.6",
+        "madewithlove/license-checker": "^3.2",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpdoc-parser": "^2.1.0",
         "phpstan/phpstan": "^2.1.30",
